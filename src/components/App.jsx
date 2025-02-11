@@ -1,9 +1,8 @@
 import { useState } from 'react'
 import viteLogo from '/vite.svg'
-
-import Header from '../Header/Header'
-import Footer from "../Footer/Footer"
-import Main from "../Main/Main"
+import Footer from "../components/Footer/Footer"
+import Main from "../components/Main/Main"
+import Header from './Header/Header'
 function App() {
   return (
     <>

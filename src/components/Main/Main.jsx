@@ -1,6 +1,6 @@
-import avatar from "../images/avatar.jpg"
-import editButton from "../images/edit_button.png"
-import addButton from "../images/add.svg"
+import avatar from "../../images/avatar.jpg"
+import editButton from "../../images/edit_button.png"
+import addButton from "../../images/add.svg"
 
 import {useState} from "react";
 import NewCard from "../Form/NewCard/NewCard";

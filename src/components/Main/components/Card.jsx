@@ -1,4 +1,4 @@
-import trashButton from "../../images/trash_icon.svg"
+import trashButton from "../../../images/trash_icon.svg"
 import ImagePopup from "./ImagePopup";
 
 export default function Card(props){

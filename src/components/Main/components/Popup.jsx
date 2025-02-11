@@ -1,4 +1,4 @@
-import closeButton from "../../images/close_icon.svg"
+import closeButton from "../../../images/close_icon.svg"
 
 export default function Popup(props) {
   //los hijos son el contenido de la ventana emergente
