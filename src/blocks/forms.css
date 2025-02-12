@@ -1,4 +1,4 @@
-.form{
+.form {
   display: flex;
   flex-direction: column;
   align-items: flex-end;
@@ -6,7 +6,7 @@
 
 .popup__form {
   position: fixed;
-  top: 20%;
+  top: 16%;
 }
 
 .form__field {
@@ -106,7 +106,6 @@
   height: 28px;
 }
 
-
 @media (max-width: 630px) {
   .popup__button-close {
     left: 0;
@@ -121,7 +120,6 @@
     width: 238px;
     padding-top: 25px;
     padding-bottom: 76px;
-
   }
   .input__text {
     margin-bottom: 30px;
@@ -148,6 +146,3 @@
     padding: 0 22px;
   }
 }
-
-
-
