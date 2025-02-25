@@ -3,7 +3,8 @@ import ImagePopup from "./ImagePopup";
 
 export default function Card(props) {
   const { name, link, isLiked } = props.card;
-  const { handleOpenPopup } = props;
+  const { handleOpenPopup, onCardLike,onCardDelete } = props;
+
   const imageComponent = {
     title: "",
     children: <ImagePopup name={name} link={link} />,
@@ -14,6 +15,14 @@ export default function Card(props) {
   const cardLikeButtonClassName = `cards__hearth-button ${
     isLiked ? "cards__hearth-button_active" : ""
   }`;
+
+  const handleLikeClick = () => {
+      onCardLike(props.card);
+  }
+  const handleCardDeleteClick = () => {
+    onCardDelete(props.card);
+}
+
 
   return (
     <li className="cards__item">
@@ -27,6 +36,7 @@ export default function Card(props) {
         className="cards__trash-button"
         aria-label="Delete card"
         type="button"
+        onClick={handleCardDeleteClick}
       >
         <img
           src={trashButton}
@@ -40,6 +50,7 @@ export default function Card(props) {
           className={cardLikeButtonClassName}
           aria-label="Like card"
           type="button"
+          onClick={handleLikeClick}
         ></button>
       </div>
     </li>

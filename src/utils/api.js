@@ -92,36 +92,20 @@ class Api {
       });
   }
 
-  likeCard(cardId) {
+  changeLikeCardStatus(cardId, isLiked){
     return fetch(`${this.baseUrl}cards/${cardId}/likes`, {
-      method: "PUT",
+      method: isLiked ? "PUT" : "DELETE",
       headers: this.headers,
     })
-      .then((res) => {
-        if (res.ok) {
-          return res.json();
-        }
-        return Promise.reject(`Error: ${res.status}`);
-      })
-      .catch((error) => {
-        console.log(error);
-      });
-  }
-
-  dislikeCard(cardId) {
-    return fetch(`${this.baseUrl}cards/${cardId}/likes`, {
-      method: "DELETE",
-      headers: this.headers,
+    .then((res) => {
+      if (res.ok) {
+        return res.json();
+      }
+      return Promise.reject(`Error: ${res.status}`);
     })
-      .then((res) => {
-        if (res.ok) {
-          return res.json();
-        }
-        return Promise.reject(`Error: ${res.status}`);
-      })
-      .catch((error) => {
-        console.log(error);
-      });
+    .catch((error) => {
+      console.log(error);
+    });
   }
 
   profileImage(link) {

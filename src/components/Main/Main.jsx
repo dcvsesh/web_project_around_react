@@ -37,6 +37,25 @@ export default function Main() {
     });
   }, []);
 
+  //Likes y eliminación de Tarjetas
+  async function handleCardLike(card) {
+   // Verifica una vez más si a esta tarjeta ya les has dado like
+  const isLiked = card.isLiked;
+   // Envía una solicitud a la API y obtén los datos actualizados de la tarjeta
+  await api.changeLikeCardStatus(card._id, !isLiked).then((newCard) => {
+  setCards((state) => state.map((currentCard) => currentCard._id === card._id ? newCard : currentCard));
+  }).catch((error) => console.error(error));
+ }
+
+async function handleCardDelete(card){
+await api.deleteCard(card._id).then(() => {
+  setCards((state) => state.filter((currentCard) => currentCard._id !== card._id));
+  }).catch((error) => console.error(error));
+
+  }
+
+
+
   const currentUser = useContext(CurrentUserContext);
 
   return (
@@ -90,6 +109,8 @@ export default function Main() {
               key={card._id}
               card={card}
               handleOpenPopup={handleOpenPopup}
+              onCardLike = {handleCardLike}
+              onCardDelete = {handleCardDelete}
             />
           ))}
         </ul>

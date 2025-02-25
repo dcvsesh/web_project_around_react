@@ -11,7 +11,7 @@ return (
           !title ? "cards__image" : ""
         }`}
         >
-          <form className="form popup__form" noValidate>
+  <form class="form popup__form" noValidate>
           <button
             aria-label="Close modal"
               className="popup__button-close"
@@ -29,7 +29,7 @@ return (
 
               {children}
               </fieldset>
-          </form>
+              </form>
         </div>
       </section>
 
