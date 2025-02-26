@@ -18,10 +18,8 @@ export default function EditProfile() {
   };
 
   const handleSubmit = (evt) => {
-    evt.preventDefault(); // Evita el comportamiento predeterminado del envío de formularios
-    console.log(name)
-    handleUpdateUser({ name, about:description }); // Actualiza la información del usuario
-    console.log(name)
+    evt.preventDefault();
+    handleUpdateUser({ name, about:description });
   };
 
   return (

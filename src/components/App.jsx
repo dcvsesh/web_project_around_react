@@ -9,7 +9,6 @@ import {api} from "../utils/api"
 
 function App() {
   const [currentUser, setCurrentUser] = useState({});
-
   useEffect(() => {
     (async () => {
       await api.getUserInfo().then((data) => {
@@ -30,11 +29,20 @@ function App() {
     })();
   };
 
+  const handleUpdateAvatar = (data) => {
+    api.profileImage(data)
+      .then((newData) => {
+        setCurrentUser(newData); // Actualizar el estado del usuario actual
+        handleClosePopup(); // Cerrar el popup después de actualizar
+      })
+      .catch((error) => console.error(error));
+  };
 
   const [popup, setPopup] = useState(null);
   function handleOpenPopup(popup) {
     setPopup(popup);
   }
+
   function handleClosePopup() {
     setPopup(null);
   }
@@ -42,7 +50,7 @@ function App() {
 
 
   return (
-    <CurrentUserContext.Provider value={{ currentUser, handleUpdateUser}}>
+    <CurrentUserContext.Provider value={{ currentUser, handleUpdateUser, onUpdateAvatar:handleUpdateAvatar}}>
      <div className="page">
 <Header/>
    <Main
