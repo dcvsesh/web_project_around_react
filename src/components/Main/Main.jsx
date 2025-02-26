@@ -13,13 +13,14 @@ import { CurrentUserContext } from "../../contexts/CurrentUserContext";
 
 export default function Main() {
   const [popup, setPopup] = useState(null);
-  const newCardPopup = { title: "Nuevo Lugar", children: <NewCard /> };
   function handleOpenPopup(popup) {
     setPopup(popup);
   }
   function handleClosePopup() {
     setPopup(null);
   }
+
+  const newCardPopup = { title: "Nuevo Lugar", children: <NewCard /> };
   const editAvatarPopup = {
     title: "Cambiar foto de perfil",
     children: <EditAvatar />,
@@ -37,7 +38,7 @@ export default function Main() {
     });
   }, []);
 
-  //Likes y eliminación de Tarjetas
+  //Likes
   async function handleCardLike(card) {
    // Verifica una vez más si a esta tarjeta ya les has dado like
   const isLiked = card.isLiked;
@@ -47,16 +48,14 @@ export default function Main() {
   }).catch((error) => console.error(error));
  }
 
+ //Eliminar targetas
 async function handleCardDelete(card){
 await api.deleteCard(card._id).then(() => {
   setCards((state) => state.filter((currentCard) => currentCard._id !== card._id));
   }).catch((error) => console.error(error));
-
   }
 
-
-
-  const currentUser = useContext(CurrentUserContext);
+  const { currentUser } = useContext(CurrentUserContext);
 
   return (
     <main className="content">

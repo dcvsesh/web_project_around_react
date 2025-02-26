@@ -1,5 +1,7 @@
 import trashButton from "../../../images/trash_icon.svg";
 import ImagePopup from "./ImagePopup";
+import { CurrentUserContext } from "../../../contexts/CurrentUserContext";
+import { useContext } from "react";
 
 export default function Card(props) {
   const { name, link, isLiked } = props.card;
@@ -22,6 +24,7 @@ export default function Card(props) {
   const handleCardDeleteClick = () => {
     onCardDelete(props.card);
 }
+const { currentUser } = useContext(CurrentUserContext);
 
 
   return (

@@ -5,8 +5,13 @@
 }
 
 .popup__form {
-  position: fixed;
-  top: 135px;
+  display: contents;
+}
+
+.popup__form_content{
+  display: flex;
+  flex-direction: column;
+  align-items: flex-end;
 }
 
 .form__field {

@@ -1,21 +1,59 @@
-import { useState } from 'react'
+import { useState, useEffect } from 'react'
 import viteLogo from '/vite.svg'
 import Footer from "../components/Footer/Footer"
 import Main from "../components/Main/Main"
 import Header from './Header/Header'
 import { CurrentUserContext } from '../contexts/CurrentUserContext'
+import {api} from "../utils/api"
+
+
 function App() {
-  const [currentUser, setCurrentUser] = useState();
+  const [currentUser, setCurrentUser] = useState({});
+
+  useEffect(() => {
+    (async () => {
+      await api.getUserInfo().then((data) => {
+        setCurrentUser(data);
+      });
+    })();
+  }, []);
+
+  const handleUpdateUser = (data) => {
+    (async () => {
+      await api
+        .setUserInfo(data)
+        .then((newData) => {
+          setCurrentUser(newData);
+          handleClosePopup();
+        })
+        .catch((error) => console.error(error));
+    })();
+  };
+
+
+  const [popup, setPopup] = useState(null);
+  function handleOpenPopup(popup) {
+    setPopup(popup);
+  }
+  function handleClosePopup() {
+    setPopup(null);
+  }
+
+
+
   return (
-    <>
+    <CurrentUserContext.Provider value={{ currentUser, handleUpdateUser}}>
      <div className="page">
-      <CurrentUserContext.Provider value={[currentUser]}>
 <Header/>
-   <Main />
+   <Main
+   onOpenPopup={handleOpenPopup}
+   onClosePopup={handleClosePopup}
+   popup={popup}
+   />
 <Footer />
-</CurrentUserContext.Provider>
     </div>
-    </>
+    </CurrentUserContext.Provider>
+
   )
 }
 

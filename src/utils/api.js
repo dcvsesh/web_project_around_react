@@ -36,14 +36,11 @@ class Api {
       });
   }
 
-  editUser(name, about) {
+  setUserInfo(data) {
     return fetch(`${this.baseUrl}users/me`, {
       method: "PATCH",
       headers: this.headers,
-      body: JSON.stringify({
-        name,
-        about,
-      }),
+      body: JSON.stringify(data),
     })
       .then((res) => {
         if (res.ok) {
@@ -108,13 +105,11 @@ class Api {
     });
   }
 
-  profileImage(link) {
+  profileImage(data) {
     return fetch(`${this.baseUrl}users/me/avatar`, {
       method: "PATCH",
       headers: this.headers,
-      body: JSON.stringify({
-        avatar: link,
-      }),
+      body: JSON.stringify(data),
     })
       .then((res) => {
         if (res.ok) {

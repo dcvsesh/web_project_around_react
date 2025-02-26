@@ -1,6 +1,9 @@
 export default function EditAvatar() {
   return (
     <>
+    <form className="form popup__form"
+    noValidate
+    onSubmit={handleSubmit}>
       <label className="form__field">
         <input
           className="input__text input__text_link"
@@ -20,6 +23,7 @@ export default function EditAvatar() {
         Guardar
       </button>
       </div>
+      </form>
     </>
   );
 }

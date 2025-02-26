@@ -1,7 +1,9 @@
 export default function NewCard(){
   return (
 <>
+<form className="form popup__form" noValidate>
 <label className="form__field">
+
                 <input
                   className="input__text input__text_place"
                   type="text"
@@ -34,6 +36,7 @@ export default function NewCard(){
         Crear
       </button>
       </div>
+      </form>
               </>
   )
 }
