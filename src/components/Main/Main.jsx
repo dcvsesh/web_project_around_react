@@ -1,25 +1,27 @@
 import avatar from "../../images/avatar.jpg";
 import editButton from "../../images/edit_button.png";
 import addButton from "../../images/add.svg";
-
-import { useState, useEffect, useContext } from "react";
+import {useContext } from "react";
 import NewCard from "../Form/NewCard/NewCard";
 import Popup from "./components/Popup";
 import EditAvatar from "../Form/EditAvatar/EditAvatar";
 import EditProfile from "../Form/EditProfile/EditProfile";
 import Card from "./components/Card";
-import { api } from "../../utils/api";
 import { CurrentUserContext } from "../../contexts/CurrentUserContext";
 
-export default function Main({cards,
+export default function Main({
+  cards,
   onCardLike,
   onCardDelete,
   onOpenPopup,
   onClosePopup,
+  onAddPlaceSubmit,
   popup,}
 ) {
 
-  const newCardPopup = { title: "Nuevo Lugar", children: <NewCard onClose={onClosePopup} /> };
+  const { currentUser } = useContext(CurrentUserContext);
+
+  const newCardPopup = { title: "Nuevo Lugar", children: <NewCard onAddPlaceSubmit={onAddPlaceSubmit} onClose={onClosePopup} /> };
   const editAvatarPopup = {
     title: "Cambiar foto de perfil",
     children: <EditAvatar onClose={onClosePopup} />,
@@ -28,8 +30,6 @@ export default function Main({cards,
     title: "Editar Perfil",
     children: <EditProfile onClose={onClosePopup}/>,
   };
-
-  const { currentUser } = useContext(CurrentUserContext);
 
   return (
     <main className="content">
@@ -77,13 +77,13 @@ export default function Main({cards,
       </section>
       <section className="cards">
         <ul className="cards__content">
-          {cards.map((card) => (
+        {cards.map((card) => (
             <Card
               key={card._id}
               card={card}
-              onOpenPopup={onOpenPopup}
-              onCardLike = {onCardLike}
-              onCardDelete = {onCardDelete}
+              onCardLike={onCardLike}
+              onCardDelete={onCardDelete}
+              handleOpenPopup={onOpenPopup}
             />
           ))}
         </ul>

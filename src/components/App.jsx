@@ -72,6 +72,15 @@ await api.deleteCard(card._id).then(() => {
   }).catch((error) => console.error(error));
   }
 
+  //Agregar Targetas
+  const handleAddPlaceSubmit = (data) => {
+    api.createCard(data.name, data.link)
+      .then((newCard) => {
+        setCards([newCard, ...cards]);
+        handleClosePopup();
+      })
+      .catch((error) => console.error(error));
+  };
 
   return (
     <CurrentUserContext.Provider value={{ currentUser, handleUpdateUser, onUpdateAvatar:handleUpdateAvatar}}>
@@ -80,9 +89,10 @@ await api.deleteCard(card._id).then(() => {
    <Main
     cards={cards}
     onCardLike={handleCardLike}
-    onCardDelete={handleCardDelete} 
+    onCardDelete={handleCardDelete}
     onOpenPopup={handleOpenPopup}
     onClosePopup={handleClosePopup}
+    onAddPlaceSubmit={handleAddPlaceSubmit}
     popup={popup}
    />
 <Footer />

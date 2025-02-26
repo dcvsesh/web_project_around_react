@@ -4,15 +4,16 @@ import { CurrentUserContext } from "../../../contexts/CurrentUserContext";
 import { useContext } from "react";
 
 export default function Card(props) {
-  const { name, link, isLiked, _id} = props.card;
+  const { name, link, isLiked} = props.card;
   const { handleOpenPopup, onCardLike,onCardDelete } = props;
+  const { currentUser } = useContext(CurrentUserContext);
 
   const imageComponent = {
     title: "",
     children: <ImagePopup name={name} link={link} />,
   };
 
-  //Card
+  //Cartas
   // Verifica si el usuario actual le ha dado "like" a la tarjeta
   const cardLikeButtonClassName = `cards__hearth-button ${
     isLiked ? "cards__hearth-button_active" : ""
@@ -24,8 +25,6 @@ export default function Card(props) {
   const handleCardDeleteClick = () => {
     onCardDelete(props.card);
 }
-const { currentUser } = useContext(CurrentUserContext);
-
 
   return (
     <li className="cards__item">
