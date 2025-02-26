@@ -51,8 +51,10 @@
 /*Image PopUp*/
 .popup__image_image {
   width: auto;
+  height: auto;
   padding-top: 2px;
-  height: 540px;
+  max-height: 540px;
+  max-width: 824px;
 }
 
 .popup__image_name {
@@ -70,13 +72,14 @@
   /*Image PopUp*/
   .popup__image_image {
     height: 400px;
+    max-width: 590px;
   }
 }
 @media (max-width: 630px) {
   /*Image PopUp*/
   .popup__image_image {
     height: 300px;
-    max-width: 400px;
+    max-width: 590px;
   }
 }
   @media (max-width: 440px) {

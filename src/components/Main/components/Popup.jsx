@@ -8,7 +8,7 @@ return (
 <section className="popup">
         <div
         className ={`popup__content ${
-          !title ? "cards__image" : ""
+          !title ? "card__image" : ""
         }`}
         >
   <div className="popup__form_content">

@@ -111,10 +111,13 @@
   height: 28px;
 }
 
-@media (max-width: 630px) {
+@media (max-width: 900px) {
   .popup__button-close {
     left: 0;
   }
+}
+
+@media (max-width: 630px) {
   .popup__button-close-image {
     width: 26px;
     margin-bottom: 13px;
