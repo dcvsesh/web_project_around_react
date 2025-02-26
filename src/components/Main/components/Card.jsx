@@ -4,7 +4,7 @@ import { CurrentUserContext } from "../../../contexts/CurrentUserContext";
 import { useContext } from "react";
 
 export default function Card(props) {
-  const { name, link, isLiked } = props.card;
+  const { name, link, isLiked, _id} = props.card;
   const { handleOpenPopup, onCardLike,onCardDelete } = props;
 
   const imageComponent = {

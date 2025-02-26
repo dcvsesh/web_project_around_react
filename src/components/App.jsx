@@ -47,6 +47,30 @@ function App() {
     setPopup(null);
   }
 
+//Cartas
+  const [cards, setCards] = useState([]);
+  useEffect(() => {
+    api.getInitialCards().then((data) => {
+      setCards(data);
+    });
+  }, []);
+
+  //Likes
+  async function handleCardLike(card) {
+   // Verifica una vez más si a esta tarjeta ya les has dado like
+  const isLiked = card.isLiked;
+   // Envía una solicitud a la API y obtén los datos actualizados de la tarjeta
+  await api.changeLikeCardStatus(card._id, !isLiked).then((newCard) => {
+  setCards((state) => state.map((currentCard) => currentCard._id === card._id ? newCard : currentCard));
+  }).catch((error) => console.error(error));
+ }
+
+ //Eliminar targetas
+async function handleCardDelete(card){
+await api.deleteCard(card._id).then(() => {
+  setCards((state) => state.filter((currentCard) => currentCard._id !== card._id));
+  }).catch((error) => console.error(error));
+  }
 
 
   return (
@@ -54,9 +78,12 @@ function App() {
      <div className="page">
 <Header/>
    <Main
-   onOpenPopup={handleOpenPopup}
-   onClosePopup={handleClosePopup}
-   popup={popup}
+    cards={cards}
+    onCardLike={handleCardLike}
+    onCardDelete={handleCardDelete} 
+    onOpenPopup={handleOpenPopup}
+    onClosePopup={handleClosePopup}
+    popup={popup}
    />
 <Footer />
     </div>
